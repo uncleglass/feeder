@@ -22,7 +22,7 @@ public class ProductUnitConverter implements AttributeConverter<ProductUnit, Int
             return null;
         }
         return Stream.of(ProductUnit.values())
-                .filter(unit -> unit.getCode() == dbData)
+                .filter(productUnit -> productUnit.getCode() == dbData)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
