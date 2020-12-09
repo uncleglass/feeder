@@ -8,6 +8,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String getTest() {
-        return "Greetings from CD. It works!!!";
+        return "Greetings from CD. It works!!!" +
+                "\nLiquibase was implemented.";
     }
 }
