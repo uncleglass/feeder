@@ -1,6 +1,6 @@
 package pl.uncleglass.feeder.user.service;
 
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import pl.uncleglass.feeder.security.service.HashService;
 import pl.uncleglass.feeder.user.domain.User;
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public UUID getAuthenticatedUsersId(Authentication authentication) {
-        return getUser(authentication.getName()).getId();
-    }
+//    public UUID getAuthenticatedUsersId(Authentication authentication) {
+//        return getUser(authentication.getName()).getId();
+//    }
 }
