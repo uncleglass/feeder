@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.security.controller;
+package pl.uncleglass.feeder.backend.security;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.uncleglass.feeder.user.domain.User;
-import pl.uncleglass.feeder.user.service.UserService;
+import pl.uncleglass.feeder.backend.user.User;
+import pl.uncleglass.feeder.backend.user.UserService;
 
 @Controller
 @RequestMapping("/signup")
