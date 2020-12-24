@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.user.domain;
+package pl.uncleglass.feeder.backend.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

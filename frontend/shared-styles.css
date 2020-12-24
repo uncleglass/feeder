@@ -1,0 +1,21 @@
+/* List view */
+
+.list-view .content {
+    display: flex;
+}
+
+.list-view .meals-grid {
+    flex: 2;
+}
+
+.list-view .meal-form {
+    flex: 1;
+    padding: var(--lumo-space-m);
+}
+
+@media all and (max-width: 1100px) {
+    .list-view.editing .toolbar,
+    .list-view.editing .meals-grid-grid {
+        display: none;
+    }
+}

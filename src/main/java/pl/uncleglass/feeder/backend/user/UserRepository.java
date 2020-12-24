@@ -1,8 +1,7 @@
-package pl.uncleglass.feeder.user.repository;
+package pl.uncleglass.feeder.backend.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.uncleglass.feeder.user.domain.User;
 
 import java.util.UUID;
 
