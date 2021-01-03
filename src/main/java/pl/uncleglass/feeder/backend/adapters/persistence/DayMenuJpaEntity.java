@@ -1,7 +1,6 @@
 package pl.uncleglass.feeder.backend.adapters.persistence;
 
 import lombok.Data;
-import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 import javax.persistence.ElementCollection;
@@ -25,5 +24,5 @@ class DayMenuJpaEntity {
 
     @ElementCollection
     @MapKeyColumn(name = "meal_type")
-    private Map<MealType, Meal> meals;
+    private Map<MealType, MealJpaEntity> meals;
 }
