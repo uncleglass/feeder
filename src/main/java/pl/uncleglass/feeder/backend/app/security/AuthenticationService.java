@@ -1,12 +1,12 @@
-package pl.uncleglass.feeder.backend.security;
+package pl.uncleglass.feeder.backend.app.security;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
-import pl.uncleglass.feeder.backend.user.User;
-import pl.uncleglass.feeder.backend.user.UserService;
+import pl.uncleglass.feeder.backend.app.user.User;
+import pl.uncleglass.feeder.backend.app.user.UserService;
 
 import java.util.ArrayList;
 

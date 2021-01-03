@@ -8,12 +8,12 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.router.Route;
-import pl.uncleglass.feeder.adapters.MealAdapter;
-import pl.uncleglass.feeder.adapters.MealDto;
+import pl.uncleglass.feeder.backend.adapters.vaadin.MealAdapter;
+import pl.uncleglass.feeder.backend.adapters.vaadin.MealDto;
 
 @Route("")
 @CssImport("shared-styles.css")
-public class MainView extends VerticalLayout {
+class MainView extends VerticalLayout {
     private final MealAdapter mealAdapter;
     private final MealForm mealForm;
     private final Grid<MealDto> grid = new Grid<>();

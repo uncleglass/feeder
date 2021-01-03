@@ -1,20 +1,20 @@
-package pl.uncleglass.feeder.adapters;
+package pl.uncleglass.feeder.backend.adapters.vaadin;
 
 import org.springframework.beans.BeanUtils;
-import pl.uncleglass.feeder.backend.meals.Meal;
-import pl.uncleglass.feeder.backend.meals.MealType;
+import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
+import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static pl.uncleglass.feeder.backend.meals.MealType.BRANCH;
-import static pl.uncleglass.feeder.backend.meals.MealType.BREAKFAST;
-import static pl.uncleglass.feeder.backend.meals.MealType.LUNCH;
-import static pl.uncleglass.feeder.backend.meals.MealType.SNACK;
-import static pl.uncleglass.feeder.backend.meals.MealType.SUPPER;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.BRANCH;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.BREAKFAST;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.LUNCH;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SNACK;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SUPPER;
 
-public class MealMapper {
+class MealMapper {
     private MealMapper() {
     }
 

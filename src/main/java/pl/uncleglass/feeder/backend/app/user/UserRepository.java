@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.backend.user;
+package pl.uncleglass.feeder.backend.app.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
