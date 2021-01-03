@@ -14,5 +14,5 @@ CREATE TABLE day_menu_meals
     meal_id      uuid NOT NULL,
     meal_type_id integer,
     FOREIGN KEY (day_menu_id) REFERENCES day_menus (id),
-    FOREIGN KEY (meal_id) REFERENCES meals (id),
+    FOREIGN KEY (meal_id) REFERENCES meals (id)
 );
