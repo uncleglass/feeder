@@ -15,8 +15,9 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
-import pl.uncleglass.feeder.adapters.MealAdapter;
-import pl.uncleglass.feeder.adapters.MealDto;
+import pl.uncleglass.feeder.backend.adapters.vaadin.MealAdapter;
+import pl.uncleglass.feeder.backend.adapters.vaadin.MealDto;
+import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 public class MealForm extends FormLayout {
     TextField name = new TextField("Nazwa");

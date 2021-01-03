@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.backend.security;
+package pl.uncleglass.feeder.backend.app.security;
 
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 class CustomRequestCache extends HttpSessionRequestCache {
 
 	@Override
-	public void saveRequest(HttpServletRequest request, HttpServletResponse response) { 
+	public void saveRequest(HttpServletRequest request, HttpServletResponse response) {
 		if (!SecurityUtils.isFrameworkInternalRequest(request)) {
 			super.saveRequest(request, response);
 		}

@@ -1,7 +1,8 @@
-package pl.uncleglass.feeder.adapters;
+package pl.uncleglass.feeder.backend.adapters.vaadin;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 import java.util.Set;
 import java.util.UUID;

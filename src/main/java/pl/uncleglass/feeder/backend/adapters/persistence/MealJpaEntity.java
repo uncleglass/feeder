@@ -1,6 +1,9 @@
-package pl.uncleglass.feeder.backend.meals;
+package pl.uncleglass.feeder.backend.adapters.persistence;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -18,7 +21,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "meals")
 @Data
-public class Meal {
+@AllArgsConstructor
+@NoArgsConstructor
+class MealJpaEntity {
     @Id
     @GeneratedValue
     private UUID id;
