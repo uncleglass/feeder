@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.backend.user;
+package pl.uncleglass.feeder.backend.app.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

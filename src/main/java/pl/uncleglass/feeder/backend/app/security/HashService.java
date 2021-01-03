@@ -1,4 +1,4 @@
-package pl.uncleglass.feeder.backend.security;
+package pl.uncleglass.feeder.backend.app.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
