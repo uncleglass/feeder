@@ -19,15 +19,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationService);
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/**", "/h2-console/**").permitAll()
 
-        http.csrf().disable()
-                .requestCache().requestCache(new CustomRequestCache())
-                .and().authorizeRequests()
-                .requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable();
 
-                .anyRequest().authenticated();
+//        http.csrf().disable()
+//                .requestCache().requestCache(new CustomRequestCache())
+//                .and().authorizeRequests()
+//                .requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
+//                .anyRequest().authenticated();
 
         http.formLogin()
                 .permitAll();
