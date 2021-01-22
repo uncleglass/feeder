@@ -16,21 +16,17 @@ import java.time.LocalDate;
 @CssImport("shared-styles.css")
 public class MenuView extends VerticalLayout {
     private final DayMenuAdapter dayMenuAdapter;
-    private final Label label = new Label();
-
+    private DayMenuComponent dayMenuComponent;
 
     public MenuView(DayMenuAdapter dayMenuAdapter) {
         this.dayMenuAdapter = dayMenuAdapter;
         setSizeFull();
-
         showDay();
-
     }
 
     private void showDay() {
         DayMenuDto dayMenu = dayMenuAdapter.getDayMenu(LocalDate.now());
-        label.setText(dayMenu.getDate().toString());
-        add(label);
+        dayMenuComponent = new DayMenuComponent(dayMenu);
+        add(dayMenuComponent);
     }
-
 }
