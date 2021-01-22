@@ -10,17 +10,23 @@ import java.util.stream.Collectors;
 class MealMapper {
 
     MealJpaEntity mapToJpaEntity(Meal meal) {
-        return new MealJpaEntity(
-                meal.getId(),
-                meal.getName(),
-                meal.getDescription(),
-                meal.getNotes(),
-                meal.getCalories(),
-                meal.getMealTypes()
-        );
+        if (meal == null) {
+            return null;
+        }
+        MealJpaEntity jpaEntity = new MealJpaEntity();
+        jpaEntity.setName(meal.getName());
+        jpaEntity.setDescription(meal.getDescription());
+        jpaEntity.setNotes(meal.getNotes());
+        jpaEntity.setCalories(meal.getCalories());
+        jpaEntity.setMealTypes(meal.getMealTypes());
+
+        return jpaEntity;
     }
 
-    public Meal mapToDomainEntity(MealJpaEntity meal) {
+    Meal mapToDomainEntity(MealJpaEntity meal) {
+        if (meal == null) {
+            return null;
+        }
         return new Meal(
                 meal.getId(),
                 meal.getName(),
@@ -31,7 +37,7 @@ class MealMapper {
         );
     }
 
-    public List<Meal> mapToDomainEntityList(List<MealJpaEntity> meals) {
+    List<Meal> mapToDomainEntityList(List<MealJpaEntity> meals) {
         return meals.stream()
                 .map(this::mapToDomainEntity)
                 .collect(Collectors.toList());
