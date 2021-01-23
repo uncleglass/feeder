@@ -2,6 +2,7 @@ package pl.uncleglass.feeder.ui;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -15,13 +16,18 @@ import java.util.Map;
 public class DayMenuComponent extends Composite<Div> {
     private Label date = new Label();
     private Map<String, MealDto> meals;
+    private Button editMealsButton = new Button("Edytuj");
 
     public DayMenuComponent(DayMenuDto dayMenuDto) {
         date.setText(dayMenuDto.getDate().toString());
 
         meals = dayMenuDto.getMeals();
 
-        getContent().add(date, configureMealsDisplaying());
+        configureEditMealsButtons();
+        getContent().add(
+                date,
+                configureMealsDisplaying(),
+                editMealsButton);
     }
 
     private Component configureMealsDisplaying() {
@@ -70,5 +76,9 @@ public class DayMenuComponent extends Composite<Div> {
         layout.add(breakfast, branch, lunch, snack, supper);
 
         return layout;
+    }
+
+    private void configureEditMealsButtons() {
+
     }
 }
