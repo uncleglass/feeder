@@ -13,11 +13,10 @@ import pl.uncleglass.feeder.backend.adapters.vaadin.MealDto;
 import java.util.Map;
 
 public class DayMenuComponent extends Composite<Div> {
-    private Label date;
+    private Label date = new Label();
     private Map<String, MealDto> meals;
 
     public DayMenuComponent(DayMenuDto dayMenuDto) {
-        date = new Label();
         date.setText(dayMenuDto.getDate().toString());
 
         meals = dayMenuDto.getMeals();
