@@ -16,9 +16,11 @@ import java.util.Map;
 public class DayMenuComponent extends Composite<Div> {
     private Label date = new Label();
     private Map<String, MealDto> meals;
+    private DayMenuDto dayMenuDto;
     private Button editMealsButton = new Button("Edytuj");
 
     public DayMenuComponent(DayMenuDto dayMenuDto) {
+        this.dayMenuDto = dayMenuDto;
         date.setText(dayMenuDto.getDate().toString());
 
         meals = dayMenuDto.getMeals();
@@ -79,6 +81,8 @@ public class DayMenuComponent extends Composite<Div> {
     }
 
     private void configureEditMealsButton() {
-
+        editMealsButton.addClickListener(event ->
+                editMealsButton.getUI().ifPresent(ui ->
+                        ui.navigate(EditDayMenuView.class, dayMenuDto.getId().toString())));
     }
 }
