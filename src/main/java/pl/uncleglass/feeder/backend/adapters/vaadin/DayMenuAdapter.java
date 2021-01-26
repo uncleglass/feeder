@@ -21,6 +21,10 @@ public class DayMenuAdapter {
         return DayMenuMapper.mapToDto(getDayMenuUseCase.getDayMenu(date));
     }
 
+    public DayMenuDto getDayMenu(UUID dayMenuId) {
+        return DayMenuMapper.mapToDto(getDayMenuUseCase.getDayMenu(dayMenuId));
+    }
+
     public void addMealToDayMenu(UUID dayMenuId, String mealTypeStr, UUID menuId) {
         MealType mealType = MealMapper.convertMealTypeStr(mealTypeStr);
         addMealToDayMenuUseCase.addMealToDayMenu(

@@ -8,6 +8,7 @@ import pl.uncleglass.feeder.backend.app.menu.port.out.AddDayMenuPort;
 import pl.uncleglass.feeder.backend.app.menu.port.out.LoadDayMenuPort;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,5 +25,10 @@ public class GetDayMenuService implements GetDayMenuUseCase {
         } else {
             return dayMenu;
         }
+    }
+
+    @Override
+    public DayMenu getDayMenu(UUID dayMenuId) {
+        return loadDayMenuPort.loadDayMenu(dayMenuId);
     }
 }
