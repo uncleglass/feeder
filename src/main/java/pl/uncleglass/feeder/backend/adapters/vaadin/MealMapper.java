@@ -59,7 +59,7 @@ class MealMapper {
         }
     }
 
-    private static MealType convertMealTypeStr(String mealType) {
+    public static MealType convertMealTypeStr(String mealType) {
         switch (mealType) {
             case "Śniadanie":
                 return BREAKFAST;
