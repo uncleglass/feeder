@@ -3,7 +3,7 @@ package pl.uncleglass.feeder.backend.adapters.persistence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.uncleglass.feeder.backend.app.menu.domain.DayMenu;
-import pl.uncleglass.feeder.backend.app.menu.port.out.CreateDayMenuPort;
+import pl.uncleglass.feeder.backend.app.menu.port.out.AddDayMenuPort;
 import pl.uncleglass.feeder.backend.app.menu.port.out.LoadDayMenuPort;
 
 import javax.persistence.EntityNotFoundException;
@@ -12,12 +12,12 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-class DayMenuPersistenceAdapter implements CreateDayMenuPort, LoadDayMenuPort {
+class DayMenuPersistenceAdapter implements AddDayMenuPort, LoadDayMenuPort {
     private final DayMenuRepository dayMenuRepository;
     private final DayMenuMapper dayMenuMapper;
 
     @Override
-    public DayMenu createDayMenu(DayMenu dayMenu) {
+    public DayMenu addDayMenu(DayMenu dayMenu) {
         DayMenuJpaEntity saved = dayMenuRepository.save(dayMenuMapper.mapToJpaEntity(dayMenu));
         return dayMenuMapper.mapToDomainEntity(saved);
     }
