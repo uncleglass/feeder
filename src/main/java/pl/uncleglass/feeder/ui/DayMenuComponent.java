@@ -23,7 +23,7 @@ public class DayMenuComponent extends Composite<Div> {
 
         meals = dayMenuDto.getMeals();
 
-        configureEditMealsButtons();
+        configureEditMealsButton();
         getContent().add(
                 date,
                 configureMealsDisplaying(),
@@ -37,8 +37,8 @@ public class DayMenuComponent extends Composite<Div> {
         breakfast.add(new Label("Ś"));
         TextField breakfastName = new TextField();
         breakfastName.setReadOnly(true);
-        MealDto beakfastValue = meals.get("Śniadanie");
-        breakfastName.setValue(beakfastValue == null ? "" : beakfastValue.getName());
+        MealDto breakfastValue = meals.get("Śniadanie");
+        breakfastName.setValue(breakfastValue == null ? "" : breakfastValue.getName());
         breakfast.add(breakfastName);
 
         HorizontalLayout branch = new HorizontalLayout();
@@ -78,7 +78,7 @@ public class DayMenuComponent extends Composite<Div> {
         return layout;
     }
 
-    private void configureEditMealsButtons() {
+    private void configureEditMealsButton() {
 
     }
 }
