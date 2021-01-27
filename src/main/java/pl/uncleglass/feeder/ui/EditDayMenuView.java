@@ -14,13 +14,13 @@ import java.util.UUID;
 
 @Route(value = "edit-day-menu", layout = MainLayout.class)
 public class EditDayMenuView extends VerticalLayout implements HasUrlParameter<String>, AfterNavigationObserver {
-    Label label = new Label();
+    Label date = new Label();
     private final DayMenuAdapter dayMenuAdapter;
     private DayMenuDto dayMenuDto;
 
     public EditDayMenuView(DayMenuAdapter dayMenuAdapter) {
         this.dayMenuAdapter = dayMenuAdapter;
-        add(label);
+        add(date);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class EditDayMenuView extends VerticalLayout implements HasUrlParameter<S
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
-        label.setText(dayMenuDto.getDate().toString());
+        date.setText(dayMenuDto.getDate().toString());
     }
 }
