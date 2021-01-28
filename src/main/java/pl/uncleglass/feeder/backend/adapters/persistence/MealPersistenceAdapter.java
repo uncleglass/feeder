@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-class MealPortPersistenceAdapter implements
+class MealPersistenceAdapter implements
         AddMealPort,
         GetAllMealsPort,
         DeleteMealPort,
