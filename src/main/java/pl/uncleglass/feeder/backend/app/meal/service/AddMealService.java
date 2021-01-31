@@ -2,11 +2,11 @@ package pl.uncleglass.feeder.backend.app.meal.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.port.in.AddMealUseCase;
 import pl.uncleglass.feeder.backend.app.meal.port.out.AddMealPort;
 
-import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
