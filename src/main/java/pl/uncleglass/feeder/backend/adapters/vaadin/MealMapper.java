@@ -1,5 +1,7 @@
 package pl.uncleglass.feeder.backend.adapters.vaadin;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
@@ -14,9 +16,8 @@ import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.LUNCH;
 import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SNACK;
 import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SUPPER;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 class MealMapper {
-    private MealMapper() {
-    }
 
     public static List<MealDto> mapToMealDtoList(List<Meal> all) {
         return all.stream()
@@ -24,7 +25,10 @@ class MealMapper {
                 .collect(Collectors.toList());
     }
 
-    private static MealDto mapToMealDto(Meal meal) {
+     static MealDto mapToMealDto(Meal meal) {
+         if (meal == null) {
+             return null;
+         }
         MealDto mealDto = new MealDto();
         BeanUtils.copyProperties(meal, mealDto, "mealTypes");
         Set<String> mealTypes = convertFromMealTypes(meal.getMealTypes());
@@ -55,7 +59,7 @@ class MealMapper {
         }
     }
 
-    private static MealType convertMealTypeStr(String mealType) {
+    public static MealType convertMealTypeStr(String mealType) {
         switch (mealType) {
             case "Śniadanie":
                 return BREAKFAST;

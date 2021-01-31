@@ -7,18 +7,20 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import pl.uncleglass.feeder.backend.adapters.vaadin.MealAdapter;
 import pl.uncleglass.feeder.backend.adapters.vaadin.MealDto;
 
-@Route("")
+@Route(value="meals", layout = MainLayout.class)
+@PageTitle("Meals | Karmink")
 @CssImport("shared-styles.css")
-class MainView extends VerticalLayout {
+public class MealsView extends VerticalLayout {
     private final MealAdapter mealAdapter;
     private final MealForm mealForm;
     private final Grid<MealDto> grid = new Grid<>();
 
-    public MainView(MealAdapter mealAdapter) {
+    public MealsView(MealAdapter mealAdapter) {
         this.mealAdapter = mealAdapter;
         addClassName("list-view");
         setSizeFull();
@@ -98,7 +100,6 @@ class MainView extends VerticalLayout {
         grid.addColumn(MealDto::getCalories)
                 .setHeader("Kalorie")
                 .setSortable(true);
-
 
         grid.getColumns()
                 .forEach(mealColumn -> mealColumn.setAutoWidth(true));
