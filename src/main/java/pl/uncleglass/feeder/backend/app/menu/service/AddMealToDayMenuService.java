@@ -2,6 +2,7 @@ package pl.uncleglass.feeder.backend.app.menu.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealPort;
@@ -10,7 +11,6 @@ import pl.uncleglass.feeder.backend.app.menu.port.in.AddMealToDayMenuUseCase;
 import pl.uncleglass.feeder.backend.app.menu.port.out.AddDayMenuPort;
 import pl.uncleglass.feeder.backend.app.menu.port.out.LoadDayMenuPort;
 
-import javax.transaction.Transactional;
 import java.util.UUID;
 
 @Service
