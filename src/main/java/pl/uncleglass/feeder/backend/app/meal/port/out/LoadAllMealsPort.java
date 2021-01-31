@@ -4,6 +4,6 @@ import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 
 import java.util.List;
 
-public interface GetAllMealsPort {
-    List<Meal> getAllMeals();
+public interface LoadAllMealsPort {
+    List<Meal> loadAllMeals();
 }
