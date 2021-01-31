@@ -12,10 +12,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Meal {
-    private  long id;
+    private  Long id;
     private  String name;
     private  String description;
     private  String notes;
-    private  int calories;
+    private  Integer calories;
     private  Set<MealType> mealTypes;
 }
