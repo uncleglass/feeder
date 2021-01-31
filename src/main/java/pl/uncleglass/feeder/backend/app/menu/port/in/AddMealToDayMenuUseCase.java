@@ -12,12 +12,12 @@ public interface AddMealToDayMenuUseCase {
     class AddMealToDayMenuCommand {
         private final UUID dayMenuId;
         private final MealType mealType;
-        private final UUID mealId;
+        private final long mealId;
 
         public AddMealToDayMenuCommand(
                 UUID dayMenuId,
                 MealType mealType,
-                UUID mealId) {
+                long mealId) {
             this.dayMenuId = dayMenuId;
             this.mealType = mealType;
             this.mealId = mealId;

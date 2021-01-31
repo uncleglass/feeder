@@ -26,7 +26,7 @@ public class AddMealToDayMenuService implements AddMealToDayMenuUseCase {
         UUID dayMenuId = command.getDayMenuId();
         DayMenu dayMenu = loadDayMenuPort.loadDayMenu(dayMenuId);
 
-        UUID mealId = command.getMealId();
+        long mealId = command.getMealId();
         Meal meal = loadMealPort.loadMeal(mealId);
 
         MealType mealType = command.getMealType();
