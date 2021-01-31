@@ -2,10 +2,12 @@ package pl.uncleglass.feeder.backend.adapters.vaadin;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 import pl.uncleglass.feeder.backend.app.meal.port.in.AddMealUseCase;
 import pl.uncleglass.feeder.backend.app.meal.port.in.DeleteMealUseCase;
 import pl.uncleglass.feeder.backend.app.meal.port.in.GetAllMealsUseCase;
+import pl.uncleglass.feeder.backend.app.meal.port.in.GetMealsByMealTypeUseCase;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +19,16 @@ public class MealAdapter {
     private final AddMealUseCase addMealUseCase;
     private final GetAllMealsUseCase getAllMealsUseCase;
     private final DeleteMealUseCase deleteMealUseCase;
+    private final GetMealsByMealTypeUseCase getMealsByMealTypeUseCase;
 
     public List<MealDto> getAll() {
         return MealMapper.mapToMealDtoList(getAllMealsUseCase.getAllMeals());
+    }
+
+    public List<MealDto> getMealsByMealType(String mealTypeStr) {
+        MealType mealType = MealMapper.convertMealTypeStr(mealTypeStr);
+        List<Meal> meals = getMealsByMealTypeUseCase.getMealsByMealType(mealType);
+        return MealMapper.mapToMealDtoList(meals);
     }
 
     public void delete(MealDto meal) {

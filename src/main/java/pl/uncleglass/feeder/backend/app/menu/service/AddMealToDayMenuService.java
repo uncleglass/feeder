@@ -7,6 +7,7 @@ import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealPort;
 import pl.uncleglass.feeder.backend.app.menu.domain.DayMenu;
 import pl.uncleglass.feeder.backend.app.menu.port.in.AddMealToDayMenuUseCase;
+import pl.uncleglass.feeder.backend.app.menu.port.out.AddDayMenuPort;
 import pl.uncleglass.feeder.backend.app.menu.port.out.LoadDayMenuPort;
 
 import javax.transaction.Transactional;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class AddMealToDayMenuService implements AddMealToDayMenuUseCase {
     private final LoadDayMenuPort loadDayMenuPort;
     private final LoadMealPort loadMealPort;
+    private final AddDayMenuPort addDayMenuPort;
 
     @Override
     @Transactional
@@ -30,5 +32,7 @@ public class AddMealToDayMenuService implements AddMealToDayMenuUseCase {
         MealType mealType = command.getMealType();
 
         dayMenu.addMeal(mealType, meal);
+
+        addDayMenuPort.addDayMenu(dayMenu);
     }
 }
