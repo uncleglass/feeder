@@ -1,6 +1,7 @@
 CREATE TABLE meals
 (
-    id          integer identity,
+--     change below column to serial in Postgres
+    id          integer AUTO_INCREMENT,
     name        varchar(255),
     description text,
     notes       text,
