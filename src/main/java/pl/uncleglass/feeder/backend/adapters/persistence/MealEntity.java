@@ -1,18 +1,17 @@
 package pl.uncleglass.feeder.backend.adapters.persistence;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class MealEntity {
-    private final Long id;
-    private final String name;
-    private final String description;
-    private final String notes;
-    private final Integer calories;
-    private final Set<Integer> mealTypes;
-
+    private  Long id;
+    private  String name;
+    private  String description;
+    private  String notes;
+    private  Integer calories;
+    private  Set<Integer> mealTypes;
 }
