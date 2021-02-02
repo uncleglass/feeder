@@ -8,10 +8,10 @@ import java.util.Set;
 @Getter
 @Setter
 public class MealDto {
-    private Long id;
+    private long id;
     private String name;
     private String description;
     private String notes;
-    private Integer calories;
+    private int calories;
     private Set<String> mealTypes;
 }

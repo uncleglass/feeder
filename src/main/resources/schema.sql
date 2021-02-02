@@ -3,8 +3,8 @@ CREATE TABLE meals
 --     change below column to serial in Postgres
     id          integer AUTO_INCREMENT,
     name        varchar(255),
-    description text,
-    notes       text,
+    description varchar,
+    notes       varchar,
     calories    integer,
     PRIMARY KEY (id)
 );

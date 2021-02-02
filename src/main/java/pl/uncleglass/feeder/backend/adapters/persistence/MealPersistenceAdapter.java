@@ -27,21 +27,23 @@ public class MealPersistenceAdapter implements
     @Override
     public void addMeal(Meal meal) {
         MealEntity mealEntity = MealMapper.mapDomainObjectToEntity(meal);
-        if (mealEntity.getId() == null) {
+
+        if (mealEntity.getId() == 0) { //TODO change it! mapper should map long 0 to Long null
             mealDAO.saveNewMeal(mealEntity);
         } else {
-            //mealDAO.updateMeal(mealEntity);
+            mealDAO.updateMeal(mealEntity);
         }
     }
 
     @Override
     public void deleteMeal(Meal meal) {
-
+        mealDAO.deleteMeal(MealMapper.mapDomainObjectToEntity(meal));
     }
 
     @Override
     public List<Meal> loadAllMeals() {
-        return new ArrayList<>();
+        List<MealEntity> mealEntities = mealDAO.loadMeals();
+        return MealMapper.mapEntityObjectToDomainList(mealEntities);
     }
 
     @Override

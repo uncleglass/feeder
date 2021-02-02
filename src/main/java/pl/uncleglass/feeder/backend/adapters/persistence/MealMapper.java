@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -77,5 +78,11 @@ public class MealMapper {
             default:
                 throw new IllegalArgumentException("Unsupported meal type");
         }
+    }
+
+    public static List<Meal> mapEntityObjectToDomainList(List<MealEntity> mealEntities) {
+        return mealEntities.stream()
+                .map(MealMapper::mapEntityObjectToDomain)
+                .collect(Collectors.toList());
     }
 }
