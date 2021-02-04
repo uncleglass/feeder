@@ -1,55 +1,58 @@
 package pl.uncleglass.feeder.backend.adapters.persistence;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
 import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 import pl.uncleglass.feeder.backend.app.meal.port.out.AddMealPort;
 import pl.uncleglass.feeder.backend.app.meal.port.out.DeleteMealPort;
-import pl.uncleglass.feeder.backend.app.meal.port.out.GetAllMealsPort;
+import pl.uncleglass.feeder.backend.app.meal.port.out.LoadAllMealsPort;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealPort;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealsByMealTypePort;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.UUID;
 
-@Service
+@Component
 @RequiredArgsConstructor
-class MealPersistenceAdapter implements
+public class MealPersistenceAdapter implements
         AddMealPort,
-        GetAllMealsPort,
         DeleteMealPort,
+        LoadAllMealsPort,
         LoadMealPort,
         LoadMealsByMealTypePort {
-    private final MealRepository mealRepository;
-    private final MealMapper mealMapper;
+
+    private final MealDAO mealDAO;
 
     @Override
     public void addMeal(Meal meal) {
-        mealRepository.save(mealMapper.mapToJpaEntity(meal));
-    }
+        MealEntity mealEntity = MealMapper.mapDomainObjectToEntity(meal);
 
-    @Override
-    public List<Meal> getAllMeals() {
-        return mealMapper.mapToDomainEntityList(mealRepository.findAll());
+        if (mealEntity.getId() == 0) { //TODO change it! mapper should map long 0 to Long null
+            mealDAO.saveNewMeal(mealEntity);
+        } else {
+            mealDAO.updateMeal(mealEntity);
+        }
     }
 
     @Override
     public void deleteMeal(Meal meal) {
-        mealRepository.delete(mealMapper.mapToJpaEntity(meal));
+        mealDAO.deleteMeal(MealMapper.mapDomainObjectToEntity(meal));
     }
 
     @Override
-    public Meal loadMeal(UUID mealId) {
-        MealJpaEntity mealJpaEntity = mealRepository.findById(mealId)
-                .orElseThrow(EntityNotFoundException::new);
-        return mealMapper.mapToDomainEntity(mealJpaEntity);
+    public List<Meal> loadAllMeals() {
+        List<MealEntity> mealEntities = mealDAO.loadMeals();
+        return MealMapper.mapEntityObjectToDomainList(mealEntities);
+    }
+
+    @Override
+    public Meal loadMeal(long mealId) {
+        return MealMapper.mapEntityObjectToDomain(mealDAO.leadMeal(mealId));
     }
 
     @Override
     public List<Meal> leadMealsByMealType(MealType mealType) {
-        List<MealJpaEntity> mealJpaEntities = mealRepository.findAllByMealTypes(mealType);
-        return mealMapper.mapToDomainEntityList(mealJpaEntities);
+        Integer typeId = MealMapper.convertMealType(mealType);
+        return MealMapper.mapEntityObjectToDomainList(mealDAO.leadMealByType(typeId));
     }
 }

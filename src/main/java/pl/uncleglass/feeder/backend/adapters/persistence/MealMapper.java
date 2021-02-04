@@ -1,45 +1,88 @@
 package pl.uncleglass.feeder.backend.adapters.persistence;
 
-import org.springframework.stereotype.Component;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import pl.uncleglass.feeder.backend.app.meal.domain.Meal;
+import pl.uncleglass.feeder.backend.app.meal.domain.MealType;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component
-class MealMapper {
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.BRANCH;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.BREAKFAST;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.LUNCH;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SNACK;
+import static pl.uncleglass.feeder.backend.app.meal.domain.MealType.SUPPER;
 
-    MealJpaEntity mapToJpaEntity(Meal meal) {
-        if (meal == null) {
-            return null;
-        }
-        MealJpaEntity jpaEntity = new MealJpaEntity();
-        jpaEntity.setName(meal.getName());
-        jpaEntity.setDescription(meal.getDescription());
-        jpaEntity.setNotes(meal.getNotes());
-        jpaEntity.setCalories(meal.getCalories());
-        jpaEntity.setMealTypes(meal.getMealTypes());
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class MealMapper {
 
-        return jpaEntity;
+    static MealEntity mapDomainObjectToEntity(Meal meal) {
+        MealEntity mealEntity = new MealEntity();
+        BeanUtils.copyProperties(meal, mealEntity, "mealTypes");
+        mealEntity.setMealTypes(convertFromMealTypes(meal.getMealTypes()));
+        return mealEntity;
     }
 
-    Meal mapToDomainEntity(MealJpaEntity meal) {
-        if (meal == null) {
-            return null;
-        }
-        return new Meal(
-                meal.getId(),
-                meal.getName(),
-                meal.getDescription(),
-                meal.getNotes(),
-                meal.getCalories(),
-                meal.getMealTypes()
-        );
+    static Set<Integer> convertFromMealTypes(Set<MealType> mealTypes) {
+        return mealTypes.stream()
+                .map(MealMapper::convertMealType)
+                .collect(Collectors.toSet());
     }
 
-    List<Meal> mapToDomainEntityList(List<MealJpaEntity> meals) {
-        return meals.stream()
-                .map(this::mapToDomainEntity)
+    static Integer convertMealType(MealType mealType) {
+        switch (mealType) {
+            case BREAKFAST:
+                return 0;
+            case BRANCH:
+                return 1;
+            case LUNCH:
+                return 2;
+            case SNACK:
+                return 3;
+            case SUPPER:
+                return 4;
+            default:
+                throw new IllegalArgumentException("Unsupported meal type");
+        }
+    }
+
+    static Meal mapEntityObjectToDomain(MealEntity mealEntity) {
+        Meal meal = new Meal();
+        BeanUtils.copyProperties(mealEntity, meal, "mealTypes");
+        meal.setMealTypes(convertToMealTypes(mealEntity.getMealTypes()));
+        return meal;
+    }
+
+    static Set<MealType> convertToMealTypes(Set<Integer> mealTypes) {
+        return mealTypes.stream()
+                .map(MealMapper::convertMealType)
+                .collect(Collectors.toSet());
+
+    }
+
+    static MealType convertMealType(Integer mealType) {
+        switch (mealType) {
+            case 0:
+                return BREAKFAST;
+            case 1:
+                return BRANCH;
+            case 2:
+                return LUNCH;
+            case 3:
+                return SNACK;
+            case 4:
+                return SUPPER;
+            default:
+                throw new IllegalArgumentException("Unsupported meal type");
+        }
+    }
+
+    static List<Meal> mapEntityObjectToDomainList(List<MealEntity> mealEntities) {
+        return mealEntities.stream()
+                .map(MealMapper::mapEntityObjectToDomain)
                 .collect(Collectors.toList());
     }
 }
