@@ -26,13 +26,13 @@ public class MealMapper {
         return mealEntity;
     }
 
-    private static Set<Integer> convertFromMealTypes(Set<MealType> mealTypes) {
+    static Set<Integer> convertFromMealTypes(Set<MealType> mealTypes) {
         return mealTypes.stream()
                 .map(MealMapper::convertMealType)
                 .collect(Collectors.toSet());
     }
 
-    private static Integer convertMealType(MealType mealType) {
+    static Integer convertMealType(MealType mealType) {
         switch (mealType) {
             case BREAKFAST:
                 return 0;
@@ -56,14 +56,14 @@ public class MealMapper {
         return meal;
     }
 
-    private static Set<MealType> convertToMealTypes(Set<Integer> mealTypes) {
+    static Set<MealType> convertToMealTypes(Set<Integer> mealTypes) {
         return mealTypes.stream()
                 .map(MealMapper::convertMealType)
                 .collect(Collectors.toSet());
 
     }
 
-    private static MealType convertMealType(Integer mealType) {
+    static MealType convertMealType(Integer mealType) {
         switch (mealType) {
             case 0:
                 return BREAKFAST;
@@ -80,7 +80,7 @@ public class MealMapper {
         }
     }
 
-    public static List<Meal> mapEntityObjectToDomainList(List<MealEntity> mealEntities) {
+    static List<Meal> mapEntityObjectToDomainList(List<MealEntity> mealEntities) {
         return mealEntities.stream()
                 .map(MealMapper::mapEntityObjectToDomain)
                 .collect(Collectors.toList());

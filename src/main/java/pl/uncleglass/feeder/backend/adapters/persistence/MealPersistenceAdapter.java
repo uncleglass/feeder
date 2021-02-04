@@ -10,7 +10,6 @@ import pl.uncleglass.feeder.backend.app.meal.port.out.LoadAllMealsPort;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealPort;
 import pl.uncleglass.feeder.backend.app.meal.port.out.LoadMealsByMealTypePort;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -48,11 +47,12 @@ public class MealPersistenceAdapter implements
 
     @Override
     public Meal loadMeal(long mealId) {
-        return new Meal();
+        return MealMapper.mapEntityObjectToDomain(mealDAO.leadMeal(mealId));
     }
 
     @Override
     public List<Meal> leadMealsByMealType(MealType mealType) {
-        return new ArrayList<>();
+        Integer typeId = MealMapper.convertMealType(mealType);
+        return MealMapper.mapEntityObjectToDomainList(mealDAO.leadMealByType(typeId));
     }
 }
